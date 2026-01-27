@@ -1,0 +1,20 @@
+{
+  "scripts": [
+    {
+      "name": "载具生成器",
+      "author": "张三",
+      "description": "一键生成所有载具",
+      "version": "1.0",
+      "download": "https://github.com/zhangsan/GTA5Master-VehicleSpawner/raw/main/vehicle_spawner.lua",
+      "category": "vehicle"
+    },
+    {
+      "name": "无限金钱",
+      "author": "李四",
+      "description": "修改游戏金钱为9999999",
+      "version": "2.1",
+      "download": "https://github.com/lisi/GTA5Master-Money/raw/main/money.lua",
+      "category": "cheat"
+    }
+  ]
+}
