@@ -9,10 +9,10 @@ def main():
     with open('scripts.json', 'r', encoding='utf-8') as f:
         scripts = json.load(f)
     
-    # 生成 Markdown 表格
+    # 生成 Markdown 表格 - 添加仓库列
     table_lines = [
-        "| 名称 | 作者 | 版本 | 描述 | 下载 |",
-        "|------|------|------|------|------|"
+        "| 名称 | 作者 | 版本 | 描述 | 下载 | 仓库 |",
+        "|------|------|------|------|------|------|"
     ]
     
     for script in scripts:
@@ -21,8 +21,15 @@ def main():
         version = script.get('version', '')
         description = script.get('description', '')[:50] + ('...' if len(script.get('description', '')) > 50 else '')
         download_url = script.get('download_url', '#')
+        repo_url = script.get('repo_url', '')
+        category = script.get('category', '')
         
-        # 验证链接（可选）
+        # 添加类别标签
+        category_tag = ""
+        if category:
+            category_tag = f'<span class="category-tag">{category}</span> '
+        
+        # 验证下载链接
         try:
             req = urllib.request.Request(download_url, method='HEAD')
             urllib.request.urlopen(req, timeout=5)
@@ -30,7 +37,16 @@ def main():
         except:
             link_status = "❌"
         
-        table_lines.append(f"| {name} | {author} | {version} | {description} | [{link_status} 下载]({download_url}) |")
+        # 生成仓库链接
+        repo_link = ""
+        if repo_url:
+            repo_link = f'[🔗]({repo_url})'
+        
+        # 生成行
+        table_lines.append(
+            f"| {category_tag}**{name}** | {author} | {version} | {description} | "
+            f"[{link_status} 下载]({download_url}) | {repo_link} |"
+        )
     
     # 读取 README.md
     with open('README.md', 'r', encoding='utf-8') as f:
@@ -47,7 +63,7 @@ def main():
     # 更新日志
     update_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     log_marker = '<!-- UPDATE_LOG -->'
-    new_log = f"{log_marker}\n最后更新: {update_time} (共 {len(scripts)} 个脚本)\n{log_marker}"
+    new_log = f"{log_marker}\n**最后更新**: {update_time} | **脚本总数**: {len(scripts)} 个\n{log_marker}"
     pattern = re.compile(f'{re.escape(log_marker)}.*?{re.escape(log_marker)}', re.DOTALL)
     content = pattern.sub(new_log, content)
     
