@@ -1,20 +1,12 @@
 {
   "scripts": [
     {
-      "name": "载具生成器",
-      "author": "张三",
-      "description": "一键生成所有载具",
+      "name": "SoloMission",
+      "author": "oakboat",
+      "description": "单人启动任务",
       "version": "1.0",
-      "download": "https://github.com/zhangsan/GTA5Master-VehicleSpawner/raw/main/vehicle_spawner.lua",
+      "download": "https://github.com/oakboat/GTA5Master-SoloMission/raw/refs/heads/main/%E5%8D%95%E4%BA%BA%E4%BB%BB%E5%8A%A1.lua",
       "category": "vehicle"
-    },
-    {
-      "name": "无限金钱",
-      "author": "李四",
-      "description": "修改游戏金钱为9999999",
-      "version": "2.1",
-      "download": "https://github.com/lisi/GTA5Master-Money/raw/main/money.lua",
-      "category": "cheat"
     }
   ]
 }
