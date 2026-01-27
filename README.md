@@ -1,80 +1,101 @@
 # GTA5Master 脚本中心
 
-## 使用方法
-1. 在GTA5Master中点击"脚本市场"
-2. 选择脚本点击"安装"
-3. 脚本会自动下载到 scripts 文件夹
+## 📦 可用脚本列表
 
-## 提交你的脚本
-1. 把你的脚本上传到GitHub
-2. 编辑这个仓库的 scripts.json 文件
-3. 添加你的脚本信息
-4. 提交Pull Request
+<!-- SCRIPTS_START -->
+| 名称 | 作者 | 版本 | 描述 | 下载 |
+|------|------|------|------|------|
+| *脚本列表将通过CI自动更新* | | | | |
+<!-- SCRIPTS_END -->
 
-# GTA5Master 插件开发规范
+## 📥 手动安装方法
+1. 下载脚本文件（`.lua` 格式）
+2. 放到 `GTA5Master/scripts/` 文件夹
+3. 重启 GTA5Master
 
-## 📁 文件结构（最简单）
+## 🚀 提交你的脚本
+
+### 开发规范
 ```
-插件文件夹/
-├── main.lua      # 必须：主文件
-└── info.json     # 必须：插件信息
+你的脚本名/
+├── main.lua      # 主文件（必须）
+└── info.json     # 插件信息（必须）
 ```
 
-## 📄 info.json 格式（必须）
+**info.json 格式：**
 ```json
 {
-  "name": "插件名称",
+  "name": "脚本名称",
   "author": "你的名字",
   "version": "1.0",
-  "description": "插件功能描述"
+  "description": "脚本功能描述",
+  "gta5_version": "1.68",
+  "download_url": "https://github.com/你的名字/仓库名/raw/main/main.lua"
 }
 ```
 
-## 📝 main.lua 基础模板
-```lua
--- 插件加载时显示通知
-notify("插件已加载")
+### 提交步骤
+1. **开发脚本**
+   - 创建 `main.lua` 和 `info.json`
+   - 测试功能正常
 
--- 创建GUI界面
-gui_text("=== 我的插件 ===")
-gui_button("按钮", function()
-    notify("按钮被点击")
-end)
+2. **上传到GitHub**
+   - 创建公开仓库
+   - 上传你的文件
+   - **确保 `main.lua` 有直接下载链接**
+
+3. **添加到官方列表**
+   - Fork 本仓库
+   - 编辑 `scripts.json` 文件
+   - 添加你的脚本信息：
+     ```json
+     {
+       "name": "你的脚本名",
+       "author": "你的名字",
+       "version": "1.0",
+       "description": "脚本描述",
+       "download_url": "https://github.com/你的名字/仓库名/raw/main/main.lua",
+       "source_url": "https://github.com/你的名字/仓库名",
+       "last_updated": "2024-01-20"
+     }
+     ```
+   - 提交 Pull Request
+
+## ⚙️ 自动更新系统
+本仓库使用 GitHub Actions 自动：
+- ✅ 验证 scripts.json 格式
+- ✅ 检查下载链接有效性
+- ✅ 自动更新 README 中的脚本表格
+- ✅ 每周自动检查链接状态
+
+## 📁 仓库文件结构
 ```
-
-## 🚀 如何提交插件
-
-### 1. 开发你的插件
-- 创建 `main.lua` 和 `info.json`
-- 测试功能是否正常
-
-### 2. 上传到GitHub
-1. 创建新仓库
-2. 上传你的两个文件
-3. 发布Release（打包成zip）
-
-### 3. 添加到官方列表
-1. 访问：https://github.com/GTA5Master/Scripts
-2. 编辑 `scripts.json`
-3. 添加你的插件信息：
-```json
-{
-  "name": "你的插件名",
-  "author": "你的名字",
-  "download": "https://github.com/你的名字/仓库名/releases/download/v1.0/插件.zip"
-}
+GTA5Master-Scripts/
+├── README.md          # 本文件（自动更新）
+├── scripts.json       # 脚本索引数据库
+├── .github/workflows/ # CI/CD 配置
+│   └── update-readme.yml
+└── scripts/           # （可选）官方示例脚本
 ```
 
 ## ⚠️ 注意事项
-- 插件文件名不要有中文
-- 不要包含恶意代码
-- 确保功能正常可用
-- 注明GTA5版本要求
+1. 脚本必须安全，无恶意代码
+2. 确保下载链接长期有效
+3. 注明兼容的GTA5版本
+4. 定期更新维护你的脚本
 
-## ❓ 需要帮助？
-- API文档：查看GTA5Master内置文档
-- 示例代码：参考官方示例仓库
-- 问题反馈：在GitHub提Issue
+## 📚 开发资源
+- API文档：查看 GTA5Master 内置文档
+- 示例代码：[示例仓库](https://github.com/GTA5Master/Examples)
+- 问题反馈：创建 Issue
 
 ---
-**最简单的插件只需要两个文件！现在就开始吧！**
+
+## 🔄 自动更新日志
+<!-- UPDATE_LOG -->
+最后更新: 等待第一次运行...
+<!-- UPDATE_LOG -->
+
+---
+
+**只需两个文件即可提交脚本！欢迎贡献！**
